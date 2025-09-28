@@ -57,6 +57,7 @@ TaskForge is a simple yet powerful task management application built with React 
 - **Linting**: ESLint with React plugins.
 
 ## Project Structure 📂
+```
 .
 ├── public
 │   └── vite.svg
@@ -77,6 +78,7 @@ TaskForge is a simple yet powerful task management application built with React 
 ├── package.json
 ├── README.md
 ├── vite.config.js
+```
 text## Installation and Setup 🛠️
 
 To run the project locally:
