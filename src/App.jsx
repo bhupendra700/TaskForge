@@ -1,6 +1,6 @@
 import ToDo from "./Component/ToDo";
 import ToDo1 from "./FireBaseComponent/ToDo";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./CSSComponent/main.css";
 import "./CSSComponent/main-mediaQuery.css";
 import { createContext, useEffect, useState } from "react";
@@ -30,6 +30,8 @@ function App() {
 
   let [user, setUser] = useState(null);
 
+  const navigate = useNavigate();
+
   let [isConnected, setIsConnected] = useState(navigator.onLine);
 
   useEffect(() => {
@@ -45,15 +47,19 @@ function App() {
       window.addEventListener("offline", updateOnlineStatus);
     };
   });
+
+  useEffect(()=>{
+    if(user){
+      navigate("/" , {replace : true} );
+    }
+  },[user])
   return (
     <Contest.Provider value={{ random, setUser, isConnected }}>
-      <Router>
         <Routes>
               <Route exact path={"/"} element={user ? <ToDo1 user={user} /> :  <ToDo />} />
               <Route exact path={"/login"} element={<Login />} />
               <Route exact path={"/signup"} element={<Signup />} />
         </Routes>
-      </Router>
     </Contest.Provider>
   );
 }
